@@ -29,7 +29,7 @@ const signUp = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.json(error.message);
+        res.status(400).json(error.message);
     }
 };
 

@@ -1,6 +1,0 @@
-export const LOG_IN = "LOGIN"
-export const SIGN_UP = "SIGNUP"
-export const GET_USER = "GETUSER"
-export const GET_USERS = "GETUSERS"
-export const DELETE_USER = "DELETE_USER"
-export const LOG_OUT = "LOG_OUT"

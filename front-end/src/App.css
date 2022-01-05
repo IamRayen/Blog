@@ -1,3 +1,30 @@
-.App{
+.App {
     width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #8a3004;
+}
+.signup {
+    background-color: #54fff1;
+    border-radius: 8px;
+    padding: 40px;
+    position: relative;
+    left: 32%;
+    width: 36%;
+    height: auto;
+}
+#signup {
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+    font-family: "Vujahday Script", cursive;
+}
+#load-error {
+    text-align: center;
+}
+.form {
+    border: 1px solid balck;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    border-radius: 10px;
 }
