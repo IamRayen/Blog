@@ -14,7 +14,7 @@ const signUp = async (req, res) => {
             if (checked2) {
                 return res
                     .status(400)
-                    .json({ message: "user name already exists" });
+                    .json({ message: "username already exists" });
             } else {
                 const hashed = await bcrypt.hash(password, salt);
                 const newUser = new User({ ...req.body, password: hashed });

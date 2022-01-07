@@ -3,19 +3,17 @@ import { useState, useRef } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import background from "../../imgs/login_img.png";
 import { login } from "../../Redux/Actions/LogInA";
-import { loginReducer } from "../../Redux/Reducers/LogInR";
-import { useNavigate } from "react-router-dom";
 
 const Login = ({ show, setShow }) => {
     const handleClose = () => setShow(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
     const initialState = {
         email: "",
-        password: "",
+        password: ""
     };
     const [validated, setValidated] = useState(false);
-    const loginState = useSelector(loginReducer)
+    const loginState = useSelector((state) => state.loginReducer)
+    const userState = useSelector((state) =>state.initialState)
     const [creds, setCreds] = useState(initialState);
     const form = useRef();
     const handleSubmit = async (event) => {
@@ -24,7 +22,6 @@ const Login = ({ show, setShow }) => {
             event.stopPropagation();
         } else {
             dispatch(login(creds));
-            navigate("/")
         }
         setValidated(true);
     };
@@ -108,7 +105,7 @@ const Login = ({ show, setShow }) => {
                 >
                     <h1 id="load-error">
                 {loginState.loading && "loading..."}
-                {validated && loginState.error}
+                {loginState.message}
             </h1>
                 </Offcanvas.Body>
             </Offcanvas>
@@ -116,4 +113,4 @@ const Login = ({ show, setShow }) => {
     );
 };
 
-export default Login;
+export default Login

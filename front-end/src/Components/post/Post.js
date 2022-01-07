@@ -1,10 +1,12 @@
-import { useState } from "react"
-import axios from "axios"
+import React from 'react'
 
-useEffect(() => {
-    axios.get("")
-})
-
-const post = () => {
-    const [post, setpost] = useState({})
+const Post = () => {
+    return (
+        <div>
+            <h1>this is one post</h1>
+        </div>
+    )
 }
+
+export default Post
+

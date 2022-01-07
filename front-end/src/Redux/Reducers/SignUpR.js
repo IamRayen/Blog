@@ -6,9 +6,9 @@ export const signupReducer = (state={},action) => {
         case SIGNUP_REQ:
             return {loading:true}
         case SIGNUP_SUC:
-            return {...state,loading:false}
+            return {...state,loading:false,message:action.data.message}
         case SIGNUP_FL:
-            return {...state,loading:false,error:"user already Exists!"}
+            return {...state,loading:false,message:action.data.message}
         default: 
             return state
     }

@@ -164,7 +164,7 @@ const Signup = () => {
             </div>
             <h1 id="load-error">
                 {signupState.loading && "loading..."}
-                {validated && signupState.error}
+                {signupState.message}
             </h1>
         </div>
     );
