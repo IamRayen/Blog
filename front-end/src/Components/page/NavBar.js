@@ -1,50 +1,65 @@
 import { Link } from "react-router-dom";
-import { Navbar, Container, Nav,Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Login from "../user/Login"
+import Login from "../user/Login";
 
 const NavBar = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const handleShow = () => {setShow(true)}
+    const handleShow = () => {
+        setShow(true);
+    };
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="white">
                 <Container fluid>
-                    <Navbar.Brand style={{
-                        marginLeft:"6%",
-                        marginRight:"3%"
-                    }} to="/">Navbar</Navbar.Brand>
-                    <Nav
-                        className="me-auto"
-                        // class="float-right"
-                        style={{
-                            width: "16%",
-                            display: "flex",
-                            justifyContent:"space-around",
-                        }}
-                    >
-                        <Link to="/">Home</Link>
-                        <Link to="/posts">Articles</Link>
-                        <Link to="/about">About</Link>
+                    <h1 class="fw-bold display-6 ms-2">CodeNook</h1>
+                    <Nav className="me-auto">
+                        <Nav.Link>
+                            <Link
+                                class="text-secondary text-decoration-none fs-5 ms-4"
+                                to="/"
+                            >
+                                Home
+                            </Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link
+                                class="text-secondary text-decoration-none fs-5"
+                                to="/posts"
+                            >
+                                Posts
+                            </Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link
+                                class="text-secondary text-decoration-none fs-5"
+                                to="/about"
+                            >
+                                About
+                            </Link>
+                        </Nav.Link>
                     </Nav>
-                    <Nav
-                    style={{
-                        width:"220px",
-                        display: "flex",
-                        justifyContent:"space-around",
-                    }}>
-                    <Button onClick={handleShow} style={{borderRadius:"20px 0px",width:"100px"}} variant="outline-primary">Log in</Button>
-                    <Button onClick={()=>navigate("/signup")} style={{borderRadius:"0px 20px",width:"100px"}} variant="primary">Sign up</Button>
+                    <Nav>
+                        <Nav.Link ><Button variant="outline-dark" onClick={handleShow}>
+                            <span>Log in</span>
+                        </Button></Nav.Link>
+                        <Nav.Link>
+                        <Button
+                        variant="dark"
+                            onClick={() => navigate("/signup")}
+                        >
+                           <span>Sign up</span> 
+                        </Button>
+                        </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <div>
-                <Login show={show} setShow={setShow}/>
+                <Login show={show} setShow={setShow} />
             </div>
         </div>
-
     );
 };
 export default NavBar;

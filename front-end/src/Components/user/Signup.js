@@ -25,8 +25,6 @@ const Signup = () => {
     };
     const initCred = {
         userName: "",
-        name: "",
-        lastName: "",
         email: "",
         password: "",
     };
@@ -39,46 +37,7 @@ const Signup = () => {
                     <Row className="mb-3">
                         <Form.Group
                             as={Col}
-                            md="4"
-                            controlId="validationCustom01"
-                        >
-                            <Form.Label>First name</Form.Label>
-                            <Form.Control
-                                onChange={(e) =>
-                                    setCred({ ...cred, name: e.target.value })
-                                }
-                                value={cred.name}
-                                type="text"
-                                placeholder="First name"
-                            />
-                            <Form.Control.Feedback>
-                                Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group
-                            as={Col}
-                            md="4"
-                            controlId="validationCustom02"
-                        >
-                            <Form.Label>Last name</Form.Label>
-                            <Form.Control
-                                onChange={(e) =>
-                                    setCred({
-                                        ...cred,
-                                        lastName: e.target.value,
-                                    })
-                                }
-                                value={cred.lastName}
-                                type="text"
-                                placeholder="Last name"
-                            />
-                            <Form.Control.Feedback>
-                                Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group
-                            as={Col}
-                            md="4"
+                            md="12"
                             controlId="validationCustomUsername"
                         >
                             <Form.Label>Username</Form.Label>
