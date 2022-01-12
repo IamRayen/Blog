@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import {Provider} from "react-redux"
+import "bootstrap-icons/font/bootstrap-icons.css";
 import store from "./Redux/store"
 
 ReactDOM.render(

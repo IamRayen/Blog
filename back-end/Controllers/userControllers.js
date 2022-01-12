@@ -95,8 +95,8 @@ const getUser = async (req, res) => {
     try {
         const data = await User.findById(req.params.userid, {
             password: 0,
-        }).populate("posts", ["blog.title", "blog.introduction"]);
-        return res.json({ message: "User found", data });
+        })/*.populate("posts", ["blog.title", "blog.introduction"])*/;
+        return res.json({ message: "User found",data });
     } catch (error) {
         console.log(error);
         res.json(error.message);

@@ -7,6 +7,7 @@ import About from './Components/page/About';
 import Error from './Components/page/Error';
 import Post from './Components/post/Post';
 import Home from './Components/page/Home';
+import User from './Components/user/User';
 
 
 function App() {
@@ -14,10 +15,10 @@ function App() {
     <div className="App">
       <NavBar/>
       <Routes>
-      <Route path="/signup" element={<Signup/>} />
       <Route exact path="/" element={<Home/>} />
       <Route path="/about" element={<About/>} />
-      <Route path="/:slug" element={<Post/>} />
+      <Route path="/post/:slug" element={<Post/>} />
+      <Route path="/user/:userid" element={<User/>} />
       <Route path="*" element={<Error/>} />
       </Routes>
     </div>

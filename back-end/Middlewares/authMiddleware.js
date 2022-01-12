@@ -5,17 +5,17 @@ const authCheck = async (req, res, next) => {
     try {
         const token = req.headers.jwt;
         if (!token) {
-            res.redirect("/login");
+            res.json({id:"authcheck",message:"you re not logged"})
         } else {
             const decoded = await jwt.verify(token, process.env.SECRET);
             const user = User.findById(decoded.id);
             if (!user) {
-                res.redirect("/login");
+                res.json({id:"authcheck",message:"invalid token"})
             }
             next();
         }
     } catch (error) {
-        res.json({ message: error.message });
+        res.json({ id:"authcheck",message: error.message });
     }
 };
 

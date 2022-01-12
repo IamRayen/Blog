@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Col, Row, InputGroup } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { Button, Form, Row } from "react-bootstrap";
 import { signup } from "../../Redux/Actions/SignUpA";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,6 @@ const Signup = () => {
     const [validated, setValidated] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const signupState = useSelector((state) => state.signupReducer);
 
     const form = useRef();
 
@@ -19,57 +18,47 @@ const Signup = () => {
             event.stopPropagation();
         } else {
             dispatch(signup(cred));
-            navigate("/")
         }
         setValidated(true);
     };
+    
     const initCred = {
         userName: "",
         email: "",
         password: "",
     };
     const [cred, setCred] = useState(initCred);
+    console.log(cred)
     return (
-        <div style={{ position: "relative", width: "100%", height: "100%" }}>
-            <h1 id="signup">Create an Account</h1>
-            <div className="signup">
-                <Form ref={form} noValidate validated={validated}>
-                    <Row className="mb-3">
+            <Form style={{padding:"0px 40px 0px 40px"}}  ref={form} noValidate validated={validated}>
+                    
+                        <h1 class="display-6 fw-bold text-white text-center ">
+                            Create an Account
+                        </h1>
+
                         <Form.Group
-                            as={Col}
-                            md="12"
+                            className="mb-3 "
                             controlId="validationCustomUsername"
                         >
-                            <Form.Label>Username</Form.Label>
-                            <InputGroup hasValidation>
-                                <InputGroup.Text id="inputGroupPrepend">
-                                    @
-                                </InputGroup.Text>
-                                <Form.Control
-                                    onChange={(e) =>
-                                        setCred({
-                                            ...cred,
-                                            userName: e.target.value,
-                                        })
-                                    }
-                                    value={cred.userName}
-                                    type="text"
-                                    placeholder="Username"
-                                    aria-describedby="inputGroupPrepend"
-                                    required
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please choose a username.
-                                </Form.Control.Feedback>
-                            </InputGroup>
+                                    <Form.Control
+                                        onChange={(e) =>
+                                            setCred({
+                                                ...cred,
+                                                userName: e.target.value,
+                                            })
+                                        }
+                                        value={cred.userName}
+                                        type="text"
+                                        placeholder="Username"
+                                        aria-describedby="inputGroupPrepend"
+                                        required
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please choose a username.
+                                    </Form.Control.Feedback>
                         </Form.Group>
-                    </Row>
-                    <Col className="mb-3">
-                        <Form.Group as={Col} className="mb-3" controlId="email">
-                            <Form.Label column sm="2">
-                                Email
-                            </Form.Label>
-                            <Col sm="12">
+
+                        <Form.Group  className="mb-3" controlId="email">
                                 <Form.Control
                                     onChange={(e) =>
                                         setCred({
@@ -82,17 +71,12 @@ const Signup = () => {
                                     type="email"
                                     placeholder="Email"
                                 />
-                            </Col>
                         </Form.Group>
                         <Form.Group
-                            as={Col}
+                            
                             className="mb-3"
                             controlId="formPlaintextPassword"
                         >
-                            <Form.Label column sm="2">
-                                Password
-                            </Form.Label>
-                            <Col sm="12">
                                 <Form.Control
                                     onChange={(e) =>
                                         setCred({
@@ -105,27 +89,27 @@ const Signup = () => {
                                     type="password"
                                     placeholder="Password"
                                 />
-                            </Col>
                         </Form.Group>
-                    </Col>
                     <Form.Group className="mb-3">
                         <Form.Check
+                            style={{color:"white"}}
                             required
-                            label="Agree to terms and conditions"
+                            label="Agree to terms and conditions (you only have to click ^^)"
                             feedback="You must agree before submitting."
                             feedbackType="invalid"
+                            class="text-center"
                         />
                     </Form.Group>
-                    <Button style={{width:"100%"}} onClick={handleSubmit} type="button">
+
+                    <Button
+                        style={{color:"black",backgroundColor:"#4267b2", width: "100%" }}
+                        variant="dark"
+                        onClick={handleSubmit}
+                        type="button"
+                    >
                         Create your Account
                     </Button>
-                </Form>
-            </div>
-            <h1 id="load-error">
-                {signupState.loading && "loading..."}
-                {signupState.message}
-            </h1>
-        </div>
+            </Form>
     );
 };
 

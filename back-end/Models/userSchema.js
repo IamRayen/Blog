@@ -6,7 +6,6 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, default: "Normal" },
-    posts:{type:[{ type: Schema.Types.ObjectId, ref: "blog" }],default:[]} ,
     feedback: {type:[String],default:[]},
 });
 

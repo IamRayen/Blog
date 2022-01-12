@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { signupReducer } from "./Reducers/SignUpR";
 import { loginReducer } from "./Reducers/LogInR";
+import { userReducer } from "./Reducers/UserR";
 
 const token = (state = {}, action) => {
     switch (action.type) {
@@ -17,6 +18,7 @@ const reducer = combineReducers({
     signupReducer,
     loginReducer,
     token,
+    userReducer
 });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));

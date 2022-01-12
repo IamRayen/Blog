@@ -1,13 +1,14 @@
-import React, {useState,useEffect} from 'react'
-import { Link } from 'react-router-dom'
-import sanityClient from "../../Client"
+import React, { useState, useEffect } from "react";
+import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import sanityClient from "../../Client";
 
 const AllPosts = () => {
-    const [postsData, setpostsData] = useState(null)
-    useEffect(async() => {
-    try {
-        const data = await sanityClient.fetch(
-            `*[_type == "post"]{
+    const [postsData, setpostsData] = useState(null);
+    useEffect(async () => {
+        try {
+            const data = await sanityClient.fetch(
+                `*[_type == "post"]{
                 title,
                 slug,
                 mainImage{
@@ -17,31 +18,44 @@ const AllPosts = () => {
                     }
                 }
             }`
-        )
-        setpostsData(data)
-    } catch (error) {
-        console.log(error)
-    }},[])
+            );
+            setpostsData(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
     return (
         <div>
-            <h1>Blog !</h1>
-            <h3>welcome to my blog posts page!</h3>
-            <div>
-                {postsData && postsData.map((post,index) =>(
-                    <Link to={"/"+post.slug.current} key={post.slug.current}>
-                        <span>
-                            <img src={post.mainImage.asset.url} alt="mainImage" />
-                        </span>
-                        <span>
-                            <h2>{post.title}</h2>
-                        </span>
-                    </Link>
-                    
-                ))}
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    flexWrap: "wrap",
+                }}
+            >
+                {postsData &&
+                    postsData.map((post, index) => (
+                        <Link
+                            class="text-decoration-none"
+                            to={"/post/" + post.slug.current}
+                            key={post.slug.current}
+                        >
+                            <Card style={{ width: "14rem",height:"450px" }}>
+                                <Card.Img
+                                    style={{height:"200px"}}
+                                    variant="top"
+                                    src={post.mainImage.asset.url}
+                                        alt="noimg"
+                                />
+                                <Card.Body>
+                                    <Card.Title class="text-dark fw-bold fs-4">{post.title}</Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </Link>
+                    ))}
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default AllPosts
+export default AllPosts;

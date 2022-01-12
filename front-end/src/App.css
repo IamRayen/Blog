@@ -1,24 +1,9 @@
 .App {
-    min-height: 100vh;
-    background-color: #4267b2;
-    background-size:cover;
-    border-bottom: black solid 1px;
+    background-color: white;
+    background-size: cover;
 }
-.signup {
-    background-color: #54fff1;
-    border-radius: 8px;
-    padding: 40px;
-    position: relative;
-    left: 32%;
-    width: 36%;
-    height: auto;
-}
-#signup {
-    text-align: center;
-    padding: 20px;
-    font-size: 40px;
-    font-family: "Vujahday Script", cursive;
-}
+
+
 #load-error {
     text-align: center;
 }
