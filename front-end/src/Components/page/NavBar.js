@@ -2,11 +2,18 @@ import { Link } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {useSelector} from "react-redux"
 import Login from "../user/Login";
 
 const NavBar = () => {
     const navigate = useNavigate();
+    const isLogged = useSelector(state => state.creds)
     const [show, setShow] = useState(false);
+    const handleLogout = () => {
+        localStorage.removeItem("auth")
+        navigate("/")
+        window.location.reload()
+    }
     const handleShow = () => {
         setShow(true);
     };
@@ -37,11 +44,16 @@ const NavBar = () => {
                         </Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link ><Button style={{backgroundColor:"#d1ac00"}} variant="outline-light" onClick={handleShow}>
+                        {isLogged ? <Nav><Nav.Link ><Button style={{backgroundColor:"#d1ac00"}} variant="outline-light" onClick={()=>navigate(`/user/${isLogged.userID}`)}>
+                        <i class="bi bi-person-circle pe-2"></i>
+                            <span>Profile</span>
+                        </Button></Nav.Link><Nav.Link ><Button style={{backgroundColor:"#d1ac00"}} variant="outline-light" onClick={handleLogout}>
+                        <i class="bi bi-box-arrow-left pe-2"></i>
+                            <span>Log Out</span>
+                        </Button></Nav.Link></Nav> : <Nav><Nav.Link ><Button style={{backgroundColor:"#d1ac00"}} variant="outline-light" onClick={handleShow}>
                         <i class="bi bi-box-arrow-in-right pe-2"></i>
                             <span>Log in</span>
-                        </Button></Nav.Link>
-                        <Nav.Link>
+                        </Button></Nav.Link><Nav.Link>
                         <Button
                         style={{backgroundColor:"#d1ac00"}}
                         variant="outline-light"
@@ -50,7 +62,7 @@ const NavBar = () => {
                             <i class="bi bi-door-open pe-2"></i>
                            <span>Sign up</span> 
                         </Button>
-                        </Nav.Link>
+                        </Nav.Link></Nav>}
                     </Nav>
                 </Container>
             </Navbar>

@@ -93,7 +93,8 @@ const deleteUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
-        const data = await User.findById(req.params.userid, {
+        const {userID} = JSON.parse(req.headers.jwt);
+        const data = await User.findById(userID, {
             password: 0,
         })/*.populate("posts", ["blog.title", "blog.introduction"])*/;
         return res.json({ message: "User found",data });

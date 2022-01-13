@@ -6,7 +6,7 @@ export const userReducer = (state={},action) => {
         case USER_REQ:
             return {loading:true}
         case USER_SUC:
-            return {...state,loading:false,message:action.data,user:action.data}
+            return {...state,loading:false,data:action.data}
         case USER_FL:
             return {...state,loading:false,error:action.error}
         default: 

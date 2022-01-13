@@ -2,15 +2,13 @@ const jwt = require("jsonwebtoken");
 
 const userMiddleware = async (req, res, next) => {
     try {
-        const token = req.headers.jwt;
-        // res.json({token:token})
+        const {token,userID} = JSON.parse(req.headers.jwt);
         if (!token) {
-            res.json({message:"no token"})
+            res.json({message:"no token, you must logIn"})
         } else {
             const decoded = await jwt.verify(token, process.env.SECRET);
-            const userid = req.params.userid
-            if (decoded.id != userid) {
-                res.json({message:"you re not the realy user"});
+            if (decoded.id != userID) {
+                res.json({message:"you re not the real user"});
             }
             next();
         }

@@ -6,8 +6,9 @@ export const signup = (payload) =>async(dispatch) => {
         dispatch({type: SIGNUP_REQ})
         const {data} = await axios.post("http://localhost:4000/signup",payload) 
         if (JSON.stringify(data.token)) {
-            localStorage.setItem("auth", JSON.stringify(data.token))
+            localStorage.setItem("auth", JSON.stringify(data))
             dispatch({ type: SIGNUP_SUC, data })
+            window.location.reload()
         } else {
             dispatch({ type: SIGNUP_FL, data });
         }       

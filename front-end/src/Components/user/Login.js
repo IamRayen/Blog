@@ -13,7 +13,6 @@ const Login = ({ show, setShow }) => {
     };
     const [validated, setValidated] = useState(false);
     const loginState = useSelector((state) => state.loginReducer)
-    const userState = useSelector((state) =>state.initialState)
     const [creds, setCreds] = useState(initialState);
     const form = useRef();
     const handleSubmit = async (event) => {

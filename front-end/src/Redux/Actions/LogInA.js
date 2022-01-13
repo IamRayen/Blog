@@ -9,8 +9,9 @@ export const login = (payload) => async (dispatch) => {
             payload
         )
         if (JSON.stringify(data.token)) {
-            localStorage.setItem("auth", JSON.stringify(data.token))
+            localStorage.setItem("auth", JSON.stringify(data))
             dispatch({ type: LOGIN_SUC, data })
+            window.location.reload()
         } else {
             dispatch({ type: LOGIN_FL, data });
         }

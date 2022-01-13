@@ -5,10 +5,10 @@ import { signupReducer } from "./Reducers/SignUpR";
 import { loginReducer } from "./Reducers/LogInR";
 import { userReducer } from "./Reducers/UserR";
 
-const token = (state = {}, action) => {
+const creds = (state = null, action) => {
     switch (action.type) {
         case "TOKEN":
-            return { token: action.payload };
+            return action.payload;
         default:
             return state;
     }
@@ -17,7 +17,7 @@ const token = (state = {}, action) => {
 const reducer = combineReducers({
     signupReducer,
     loginReducer,
-    token,
+    creds,
     userReducer
 });
 
