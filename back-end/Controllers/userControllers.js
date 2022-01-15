@@ -81,9 +81,10 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        const data = await User.findByIdAndDelete(req.params.userid, {
+        const data = await User.findByIdAndDelete(req.params.userid, {email:1,password:0,
             new: true,
         });
+        console.log(data)
         return res.json({ message: "user deleted successfully", data });
     } catch (error) {
         console.log(error);

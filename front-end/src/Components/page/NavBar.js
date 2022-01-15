@@ -18,8 +18,8 @@ const NavBar = () => {
         setShow(true);
     };
     return (
-        <div >
-            <Navbar style={{backgroundColor:"#4267b2",height:"80px",position:"fixed",width:"100%"}}>
+        <div>
+            <Navbar style={{backgroundColor:"#4267b2",height:"80px",position:"relative",width:"100%"}}>
                 <Container fluid>
                 <i class="bi bi-qr-code display-6"></i>
                     <h1 class="fw-bold display-6 ms-2">CodeNook</h1>
@@ -53,16 +53,7 @@ const NavBar = () => {
                         </Button></Nav.Link></Nav> : <Nav><Nav.Link ><Button style={{backgroundColor:"#d1ac00"}} variant="outline-light" onClick={handleShow}>
                         <i class="bi bi-box-arrow-in-right pe-2"></i>
                             <span>Log in</span>
-                        </Button></Nav.Link><Nav.Link>
-                        <Button
-                        style={{backgroundColor:"#d1ac00"}}
-                        variant="outline-light"
-                            onClick={() => navigate("/")}
-                        >
-                            <i class="bi bi-door-open pe-2"></i>
-                           <span>Sign up</span> 
-                        </Button>
-                        </Nav.Link></Nav>}
+                        </Button></Nav.Link></Nav>}
                     </Nav>
                 </Container>
             </Navbar>

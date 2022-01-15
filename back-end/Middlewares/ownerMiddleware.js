@@ -1,4 +1,3 @@
-const { findById } = require("../Models/userSchema");
 const User = require("../Models/userSchema");
 
 const ownerMiddleware = async (req, res, next) => {

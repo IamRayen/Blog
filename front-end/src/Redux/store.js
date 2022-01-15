@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { signupReducer } from "./Reducers/SignUpR";
 import { loginReducer } from "./Reducers/LogInR";
+import { deleteUserR } from "./Reducers/DeleteUserR";
 import { userReducer } from "./Reducers/UserR";
 
 const creds = (state = null, action) => {
@@ -18,7 +19,8 @@ const reducer = combineReducers({
     signupReducer,
     loginReducer,
     creds,
-    userReducer
+    userReducer,
+    deleteUserR
 });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));

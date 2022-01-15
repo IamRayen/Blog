@@ -1,7 +1,5 @@
 import axios from "axios";
 import { USER_REQ, USER_SUC, USER_FL } from "../Constants/UserC";
-import { useSelector } from "react-redux";
-import { useState } from "react";
 
 
 export const UserA = () => async (dispatch) => {

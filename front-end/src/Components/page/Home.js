@@ -1,16 +1,17 @@
 import React from "react";
 import AllPosts from "../post/Posts";
 import Signup from "../user/Signup";
+import { useSelector } from "react-redux";
 
 function Home() {
+    const isLogged = useSelector(state => state.creds)
     return (
         <div>
         <section
             style={{
                 backgroundColor: "#4267b2",
-                minHeight:"100vh",
+                minHeight:"90vh",
                 maxWidth:"100%",
-                paddingTop:"80px"
             }}
         >
             <div class="container-xl pt-4">
@@ -25,15 +26,15 @@ function Home() {
                             </h1>
                         </div>
                         <div class="shadow-lg p-4">
-                            <p class="display-6 p-2 shadow-lg">
+                            <p class="display-6 pb-2 ps-3 shadow-lg">
                                 Here you can learn Web development in a{" "}
                                 <span class="fw-bold">simpler</span> way.
                             </p>
                         </div>
                     </div>
-                    <div class="col p-5 container-lg ">
+                    {isLogged ? <div class="col p-5 container-lg display-2 text-center" style={{color:"white"}}>We are glad to have you here Developer!<i class="bi bi-check-lg"></i></div>:<div class="col p-5 container-lg ">
                         <Signup />
-                    </div>
+                    </div>}
                     
                 </div>
                 <div class="Row text-center mt-5">
@@ -48,8 +49,11 @@ function Home() {
             minHeight:"90vh",
             width:"100%",
         }}>
-            <h1>this is the second section</h1>
+            <div class="container-lg">
+            <h1 class="m-4">Recent</h1>
             <AllPosts/>
+            </div>
+          
         </section>
         </div>
 

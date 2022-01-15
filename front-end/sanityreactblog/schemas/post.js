@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'intro',
+      title: 'Introduction',
+      type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -40,7 +45,10 @@ export default {
     {
       name: 'publishedAt',
       title: 'Published at',
-      type: 'datetime',
+      type: 'date',
+      options:{
+        dateFormat:"YYYY-MM-DD"
+      }
     },
     {
       name: 'body',

@@ -11,6 +11,8 @@ const AllPosts = () => {
                 `*[_type == "post"]{
                 title,
                 slug,
+                intro,
+                publishedAt,
                 mainImage{
                     asset->{
                         _id,
@@ -25,35 +27,48 @@ const AllPosts = () => {
         }
     }, []);
     return (
-        <div>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    flexWrap: "wrap",
-                }}
-            >
-                {postsData &&
-                    postsData.map((post, index) => (
+        <div class="container-lg">
+            {postsData &&
+                postsData
+                .sort((x,y)=>{
+                    const date1 = new Date(x.publishedAt)
+                    const date2 = new Date(y.publishedAt)
+                    return date2-date1
+                })
+                    .map((post, index) => (
                         <Link
                             class="text-decoration-none"
                             to={"/post/" + post.slug.current}
                             key={post.slug.current}
                         >
-                            <Card style={{ width: "14rem",height:"450px" }}>
-                                <Card.Img
-                                    style={{height:"200px"}}
-                                    variant="top"
-                                    src={post.mainImage.asset.url}
-                                        alt="noimg"
-                                />
-                                <Card.Body>
-                                    <Card.Title class="text-dark fw-bold fs-4">{post.title}</Card.Title>
-                                </Card.Body>
-                            </Card>
+                            <div class="container-lg mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-2">
+                                        <img
+                                            src={post.mainImage.asset.url}
+                                            alt="noimg"
+                                            class="img-fluid rounded-start"
+                                        />
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                {post.title}
+                                            </h5>
+                                            <p class="card-text">
+                                                {post.intro}
+                                            </p>
+                                            <p class="card-text">
+                                                <small class="text-muted">
+                                                    {post.publishedAt}
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </Link>
                     ))}
-            </div>
         </div>
     );
 };
