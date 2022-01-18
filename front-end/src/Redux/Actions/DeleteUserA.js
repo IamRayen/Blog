@@ -8,12 +8,10 @@ export const DeleteUserA = () => async(dispatch) => {
         const jwt = localStorage.getItem("auth")
         dispatch({type:DELETE_REQ})
         const {data} = await axios.delete(`http://localhost:4000/user/${JSON.parse(jwt).userID}/delete`,{headers:{jwt:jwt}})
-        console.log(data)
         if(data.message == "user deleted successfully"){
             dispatch({type:DELETE_SUC,data})
             localStorage.removeItem("auth")
             window.location.reload()
-            console.log(data)
         }else{
             dispatch({type:DELETE_FL})
         }

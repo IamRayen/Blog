@@ -3,7 +3,7 @@ const User = require("../Models/userSchema");
 
 const authCheck = async (req, res, next) => {
     try {
-        const token = req.headers.jwt;
+        const {token} = JSON.parse(req.headers.jwt);
         if (!token) {
             res.json({id:"authcheck",message:"you re not logged"})
         } else {

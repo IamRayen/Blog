@@ -58,33 +58,12 @@ const logIn = async (req, res) => {
     }
 };
 
-const logOut = async (req, res) => {
-    try {
-        const emptyToken = "";
-        return res.json(emptyToken);
-        // res.redirect("/");
-    } catch (error) {
-        console.log(error);
-        res.json(error.message);
-    }
-};
-
-const getAllUsers = async (req, res) => {
-    try {
-        const data = await User.find().select(["userName", "role"]);
-        return res.json({ message: "users found", data });
-    } catch (error) {
-        console.log(error);
-        res.json(error.message);
-    }
-};
 
 const deleteUser = async (req, res) => {
     try {
         const data = await User.findByIdAndDelete(req.params.userid, {email:1,password:0,
             new: true,
         });
-        console.log(data)
         return res.json({ message: "user deleted successfully", data });
     } catch (error) {
         console.log(error);
@@ -104,5 +83,17 @@ const getUser = async (req, res) => {
         res.json(error.message);
     }
 };
+const editUser = async(req,res) => {
+    try {
+        const userID = req.params.userid;
+        const userPass = req.body.newUser && req.body.newUser.password ? req.body.newUser.password : null
+        const hashed = userPass ? await bcrypt.hash(userPass, salt) : null
+        await User.findByIdAndUpdate(userID,userPass ? {...req.body.newUser,password:hashed} : req.body.newUser)
+        res.json({message:"User Edited Successfuly"})
+    } catch (error) {
+        res.json({id:"editUser",message:error.message})
+        console.log(error)
+    }
+}
 
-module.exports = { getUser, getAllUsers, deleteUser, signUp, logIn, logOut };
+module.exports = {editUser, getUser, deleteUser, signUp, logIn };

@@ -7,7 +7,7 @@ export const UserA = () => async (dispatch) => {
     try {
         const jwt = localStorage.getItem("auth")
         dispatch({ type: USER_REQ });
-        const response = await axios.get("http://localhost:4000/user/:userid",{headers:{jwt:jwt}});
+        const response = await axios.get("http://localhost:4000/user/:u",{headers:{jwt:jwt}});
         if (response.data) {
             dispatch({ type: USER_SUC, data:response.data.data });
         } else {

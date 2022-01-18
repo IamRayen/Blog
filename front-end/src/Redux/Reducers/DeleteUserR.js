@@ -5,7 +5,7 @@ export const deleteUserR = (state={},action) => {
         case DELETE_REQ:
             return {loading:true}
         case DELETE_SUC:
-            return {...state,loading:false,message:action.data}
+            return {...state,loading:false,user:action.data}
         case DELETE_FL:
             return {...state,loading:false,message:action.data.message}
         default: 
