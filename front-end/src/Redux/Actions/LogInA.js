@@ -5,9 +5,10 @@ export const login = (payload) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQ });
         const { data } = await axios.post(
-            "http://localhost:4000/login",
+            "https://codenook.herokuapp.com/login",
             payload
         )
+        console.log(data);
         if (JSON.stringify(data.token)) {
             localStorage.setItem("auth", JSON.stringify(data))
             dispatch({ type: LOGIN_SUC, data })

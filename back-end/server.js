@@ -7,12 +7,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// app.use("/", require("./Routes/blogRoutes"));
+app.get("/",(req,res) => {
+    res.json("Hello World")  
+})
+
 app.use("/", require("./Routes/userRoutes"));
 
 connectDB();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`app Listening on ${PORT}`);
 });

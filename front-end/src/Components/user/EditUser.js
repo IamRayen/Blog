@@ -18,7 +18,7 @@ const EditUser = ({ setShow, show, user }) => {
             event.stopPropagation();
         } else {
             try {
-                const response = await axios.put(`http://localhost:4000/user/${user._id}/edit`,{newUser:newUser},{headers:{jwt:jwt}})
+                const response = await axios.put(`https://codenook.herokuapp.com/user/${user._id}/edit`,{newUser:newUser},{headers:{jwt:jwt}})
                 setRes(response)
                 setValidated(true);
                 dispatch(UserA())
